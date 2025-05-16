@@ -1,0 +1,58 @@
+---
+import { useTranslations } from '../i18n/utils';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const projects = [
+  {
+    title: t('project1.title'),
+    description: t('project1.description'),
+    image: 'https://via.placeholder.com/600x400/f3f4f6/111827?text=E-Commerce',
+  },
+  {
+    title: t('project2.title'),
+    description: t('project2.description'),
+    image: 'https://via.placeholder.com/600x400/f3f4f6/111827?text=Task+App',
+  },
+  {
+    title: t('project3.title'),
+    description: t('project3.description'),
+    image: 'https://via.placeholder.com/600x400/f3f4f6/111827?text=Real+Estate',
+  },
+];
+---
+
+<section id="works" class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">{t('works.title')}</h2>
+      <p class="mt-4 text-lg text-gray-600">
+        {t('works.description')}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map(project => (
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-transform hover:-translate-y-1 hover:shadow-md">
+          <div class="aspect-w-16 aspect-h-9">
+            <img src={project.image} alt={project.title} class="w-full h-48 object-cover" />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900">{project.title}</h3>
+            <p class="mt-2 text-gray-600">{project.description}</p>
+            <div class="mt-4 flex justify-end">
+              <a href="#" class="text-primary hover:text-primary-dark font-medium flex items-center">
+                <span>View details</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,150 @@
+---
+import { useTranslations } from '../i18n/utils';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const webTechStack = [
+  { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg' },
+  { name: 'Livewire', icon: 'https://laravel-livewire.com/favicon.ico' },
+  { name: 'Alpine.js', icon: 'https://alpinejs.dev/favicon.png' },
+  { name: 'Vue.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg' },
+  { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+];
+
+const mobileTechStack = [
+  { name: 'React Native', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'Flutter', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
+  { name: 'Expo', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
+];
+
+const infraTechStack = [
+  { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'Google Apps Script', icon: 'https://www.gstatic.com/images/branding/product/2x/apps_script_48dp.png' }
+];
+---
+
+<section id="skills" class="py-16 md:py-24 bg-gray-300">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">{t('skills.title')}</h2>
+      <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+        {t('skills.description')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <!-- Web Applications -->
+      <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-200 flex flex-col">
+        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 flex items-center justify-center">
+          <span class="bg-gray-100 text-gray-800 px-5 py-2 rounded-lg border border-gray-200">{t('skills.web')}</span>
+        </h3>
+        <div class="space-y-6 flex-1">
+          <div class="flex flex-col sm:flex-row items-start gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="sm:w-12 flex-shrink-0">
+              <img src="/icon/laravel.svg" alt="Laravel" class="w-10 h-10" />
+            </div>
+            <div class="flex-grow">
+              <p class="font-medium text-gray-800">{t('skills.web.laravel')}</p>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="sm:w-12 flex-shrink-0 flex items-center space-x-1">
+              <img src="https://laravel-livewire.com/favicon.ico" alt="Livewire" class="w-5 h-5" />
+              <img src="https://alpinejs.dev/favicon.png" alt="Alpine.js" class="w-5 h-5" />
+            </div>
+            <div class="flex-grow">
+              <p class="font-medium text-gray-800">{t('skills.web.livewire')}</p>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="sm:w-12 flex-shrink-0 flex items-center space-x-1">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="w-5 h-5" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="w-5 h-5" />
+            </div>
+            <div class="flex-grow">
+              <p class="font-medium text-gray-800">{t('skills.web.frontend')}</p>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="sm:w-12 flex-shrink-0">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-10 h-10" />
+            </div>
+            <div class="flex-grow">
+              <p class="font-medium text-gray-800">{t('skills.web.nodejs')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Applications -->
+      <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-200 flex flex-col">
+        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 flex items-center justify-center">
+          <span class="bg-gray-100 text-gray-800 px-5 py-2 rounded-lg border border-gray-200">{t('skills.mobile')}</span>
+        </h3>
+        <div class="space-y-6 flex-1">
+          <div class="flex flex-col sm:flex-row items-start gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="sm:w-12 flex-shrink-0">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" class="w-10 h-10" />
+            </div>
+            <div class="flex-grow">
+              <p class="font-medium text-gray-800">{t('skills.mobile.flutter')}</p>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="sm:w-12 flex-shrink-0">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" class="w-10 h-10" />
+            </div>
+            <div class="flex-grow">
+              <p class="font-medium text-gray-800">{t('skills.mobile.reactnative')}</p>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="sm:w-12 flex-shrink-0">
+              <img src="/icon/expo.svg" alt="Expo" class="w-10 h-10" />
+            </div>
+            <div class="flex-grow">
+              <p class="font-medium text-gray-800">{t('skills.mobile.expo')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infrastructure & Server Operations -->
+      <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-200 flex flex-col">
+        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 flex items-center justify-center">
+          <span class="bg-gray-100 text-gray-800 px-5 py-2 rounded-lg border border-gray-200">{t('skills.infra')}</span>
+        </h3>
+        <div class="space-y-6 flex-1">
+          <div class="flex flex-col sm:flex-row items-start gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="sm:w-12 flex-shrink-0">
+              <img src="/icon/aws.svg" alt="AWS" class="w-10 h-10" />
+            </div>
+            <div class="flex-grow">
+              <p class="font-medium text-gray-800">{t('skills.infra.aws')}</p>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start gap-4 p-4 bg-gray-50 rounded-lg">
+            <div class="sm:w-12 flex-shrink-0">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-10 h-10" />
+            </div>
+            <div class="flex-grow">
+              <p class="font-medium text-gray-800">{t('skills.infra.docker')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-6 text-center text-white flex items-center justify-center">
+        <p class="text-lg leading-relaxed">
+          {t('skills.summary')}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

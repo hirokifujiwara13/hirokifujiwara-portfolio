@@ -1,0 +1,105 @@
+---
+import { languages } from '../i18n/ui';
+import { getLangFromUrl } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex items-center">
+        <a href={`/${lang}/`} class="text-xl font-bold text-gray-900">hirokifujiwara</a>
+      </div>
+      <nav class="hidden md:flex items-center space-x-6">
+        <a href={`/${lang}/`} class="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.home')}</a>
+        <a href={`/${lang}/#about`} class="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.about')}</a>
+        <a href={`/${lang}/#skills`} class="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.skills')}</a>
+        <!-- <a href={`/${lang}/#works`} class="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.works')}</a> -->
+        <div class="relative language-dropdown">
+          <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+            <span>{languages[lang as keyof typeof languages]}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute right-0 mt-2 w-18 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden language-menu">
+            <div class="py-1">
+              {Object.entries(languages).map(([code, label]) => (
+                <a 
+                  href={`/${code}/${Astro.url.pathname.split('/').slice(2).join('/')}`}
+                  class={`block px-4 py-2 text-sm ${lang === code ? 'bg-gray-100 text-gray-900' : 'text-gray-700'} hover:bg-gray-100`}>
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Mobile menu button -->
+      <div class="flex items-center md:hidden">
+        <button type="button" class="mobile-menu-button text-gray-600 hover:text-gray-900" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile menu -->
+  <div class="mobile-menu hidden md:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
+      <a href={`/${lang}/`} class="block px-3 py-2 text-gray-600 hover:text-gray-900">{t('nav.home')}</a>
+      <a href={`/${lang}/#about`} class="block px-3 py-2 text-gray-600 hover:text-gray-900">{t('nav.about')}</a>
+      <a href={`/${lang}/#skills`} class="block px-3 py-2 text-gray-600 hover:text-gray-900">{t('nav.skills')}</a>
+      <!-- <a href={`/${lang}/#works`} class="block px-3 py-2 text-gray-600 hover:text-gray-900">{t('nav.works')}</a> -->
+      <div class="px-3 py-2 border-t">
+        <p class="text-sm font-medium text-gray-600 mb-2">Language / 言語</p>
+        <div class="space-y-1">
+          {Object.entries(languages).map(([code, label]) => (
+            <a 
+              href={`/${code}/${Astro.url.pathname.split('/').slice(2).join('/')}`}
+              class={`block py-1 ${lang === code ? 'text-primary font-medium' : 'text-gray-600'} hover:text-gray-900`}>
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>  
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Language dropdown toggle
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const languageMenu = document.querySelector('.language-menu');
+    
+    if (languageDropdown && languageMenu) {
+      languageDropdown.addEventListener('click', function() {
+        languageMenu.classList.toggle('hidden');
+      });
+      
+      // Close the dropdown when clicking outside of it
+      document.addEventListener('click', function(event) {
+        if (!languageDropdown.contains(event.target as Node)) {
+          languageMenu.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>
